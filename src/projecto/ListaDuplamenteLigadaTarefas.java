@@ -83,7 +83,9 @@ public class ListaDuplamenteLigadaTarefas {
        Tarefa aux = this.primeiro;
         if (!isEmpty()) {
            this.primeiro = this.primeiro.proximo;
-           this.primeiro.anterior = null;
+           if (this.primeiro != null) {
+               this.primeiro.anterior = null;
+           }
            this.quant -= 1;
        }
        return aux;
@@ -94,6 +96,7 @@ public class ListaDuplamenteLigadaTarefas {
         
         if (!this.isEmpty()) {
             this.ultimo = this.ultimo.anterior;
+            this.ultimo.proximo = null;
         }
         this.quant -= 1;
         return aux;
@@ -105,13 +108,12 @@ public class ListaDuplamenteLigadaTarefas {
         Tarefa resposta = null;
         
         if(pos == 0){
-          resposta = this.removerInicio();
+          return this.removerInicio();
         }
         else if(pos >= contList() - 1){
-          resposta = this.removerFim();
+          return this.removerFim();
         }
         else{
-            
             while(i < pos){
                 aux = aux.proximo;
                 i++;
@@ -146,7 +148,17 @@ public class ListaDuplamenteLigadaTarefas {
         this.id = id;
     }
     
-    
-
-
+    @Override
+    public String toString() {
+        
+        StringBuilder sb = new StringBuilder();
+        
+       Tarefa inicio = primeiro;
+       
+       while(inicio != null){
+           sb.append(inicio);
+           inicio = inicio.proximo;
+       }
+       return sb.toString();
+    }
 }

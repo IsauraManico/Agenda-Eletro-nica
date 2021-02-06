@@ -11,23 +11,4 @@ package projecto;
  */
 public class ListaDeTarefasDoDia extends ListaDuplamenteLigadaTarefas {
     
-    public void inserir(Tarefa tarefa){
-        super.inserirFim(tarefa);
-    }
-    
-    public Tarefa buscar(int pos){
-        return super.busca(pos);
-    }
-    
-    
-    public Tarefa remover(int pos)
-    {
-        return super.removerMeio(pos);
-    }
-
-    @Override
-    public String toString() {
-        return "";
-    }
-    
 }

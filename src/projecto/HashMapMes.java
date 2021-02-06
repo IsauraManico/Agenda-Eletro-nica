@@ -45,11 +45,13 @@ public class HashMapMes {
         if(!this.estaCheia()){
  
             int index = this.funcaoHash(chaveDia);
-            int indexAUX = index;
             
             if(this.listaDias[index] == null){
                 this.listaDias[index] = new ListaDeTarefasDoDia();
-                this.arrayChaves.add(chaveDia);
+                this.listaDias[index].setDia(index);
+            }
+            if (!this.arrayChaves.contains(chaveDia)) {
+                 this.arrayChaves.add(chaveDia);
             }
             this.listaDias[index].inserirFim(tarefa);
             this.quantidade++;

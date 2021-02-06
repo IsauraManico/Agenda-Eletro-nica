@@ -50,9 +50,13 @@ public class HashMapAno {
             
             if(this.listaMes[index] == null){
                 this.listaMes[index] = new HashMapMes();
+                this.listaMes[index].setIdMes(chaveMes);
             } 
+            if (!this.arrayChaves.contains(chaveMes)) {
+                this.arrayChaves.add(chaveMes);   
+            }
             this.listaMes[index].inserir(tarefa.getData().getDayOfMonth(), tarefa);
-            this.arrayChaves.add(chaveMes);
+            
             this.quantidade++;
         }
     }

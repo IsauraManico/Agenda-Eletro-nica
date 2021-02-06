@@ -41,25 +41,42 @@ public class HashMap {
     private boolean estaCheia(){
         return this.quantidade == this.TAMANHO;
     }
+    
+    public void inserirTarefa(Tarefa novaTarefa){
+        this.inserirAno(novaTarefa.getAno(), novaTarefa);
+    }
+    
     public void inserirAno(int chaveAno, Tarefa novaTarefa){
         if(!this.estaCheia()){
             int index = this.funcaoHash(chaveAno);
             int indexAUX = index;
             
+            if (!this.arrayChaves.contains(chaveAno)) {
+                this.arrayChaves.add(chaveAno);
+            }
+            
             if(this.anos[index] == null) {
                 this.anos[index] = new HashMapAno();
+                this.anos[index].setIdAno(chaveAno);
                 this.anos[index].inserir(novaTarefa.getData().getMonthValue(), novaTarefa);
-                this.arrayChaves.add(chaveAno);
             } else {
-                while(this.anos[index] != null ||
-                     (this.anos[index] != null ? this.anos[index].getChaves().isEmpty() : false)){
+                while(this.anos[index] != null){
+                    if (this.anos[index].getIdAno() == chaveAno) {
+                        break;
+                    }
                     index = (index + 1) % this.TAMANHO;
                     if (indexAUX == index) {
                       break;
                     }
                 }
+                if (this.anos[index] == null) {
+                    this.anos[index] = new HashMapAno();
+                    this.anos[index].setIdAno(chaveAno);
+                }
                 this.anos[index].inserir(novaTarefa.getData().getMonthValue(), novaTarefa);
             }
+            
+            
             this.quantidade++;
         }
     }
@@ -128,12 +145,10 @@ public class HashMap {
             }
             
         }
-        
         return null;
     }
     
-    public ArrayList getChaves()
-    {
+    public ArrayList getChaves() {
         return this.arrayChaves;
     }
 

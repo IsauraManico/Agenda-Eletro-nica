@@ -14,8 +14,12 @@ import java.time.LocalDateTime;
  */
 public class Tarefa {
     private LocalDateTime data;
-    private int diaSemana;
+    private String diaSemana;
+    private int ano;
+    private int mes;
+    private int dia;
     private int hora;
+    private int minuto;
     private String descricao;
     private String local;
     private int lembrete;
@@ -25,7 +29,9 @@ public class Tarefa {
 
     public Tarefa(LocalDateTime data, String descricao, String local, int lembrete, int periocidade) {
         this.data = data;
-        
+        this.diaSemana = data.getDayOfWeek().toString();
+        this.hora = data.getHour();
+        this.minuto = data.getMinute();
         this.descricao = descricao;
         this.local = local;
         this.lembrete = lembrete;
@@ -38,13 +44,16 @@ public class Tarefa {
 
     public void setData(LocalDateTime data) {
         this.data = data;
+        this.diaSemana = data.getDayOfWeek().toString();
+        this.hora = data.getHour();
+        this.minuto = data.getMinute();
     }
 
-    public int getDiaSemana() {
+    public String getDiaSemana() {
         return diaSemana;
     }
 
-    public void setDiaSemana(int diaSemana) {
+    public void setDiaSemana(String diaSemana) {
         this.diaSemana = diaSemana;
     }
 
@@ -88,6 +97,39 @@ public class Tarefa {
         this.periocidade = periocidade;
     }
 
+    public int getAno() {
+        return ano == 0 ? this.data.getYear() : this.ano;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
+
+    public int getMes() {
+        return mes == 0 ? this.data.getMonthValue(): this.mes;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+
+    public int getDia() {
+        return dia == 0 ? this.data.getDayOfMonth(): this.dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    public int getMinuto() {
+        return minuto;
+    }
+
+    public void setMinuto(int minuto) {
+        this.minuto = minuto;
+    }
+
+    
     @Override
     public String toString() {
         return "Tarefa{" + "data=" + data + ", diaSemana=" + diaSemana + ", hora=" + hora + ", descricao=" + descricao + ", local=" + local + ", lembrete=" + lembrete + ", periocidade=" + periocidade + '}';
