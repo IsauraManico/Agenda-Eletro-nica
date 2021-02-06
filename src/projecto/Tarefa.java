@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package projecto;
 
 import java.util.Date;
@@ -12,7 +8,8 @@ import java.time.LocalDateTime;
  *
  * @author kenny
  */
-public class Tarefa {
+public class Tarefa 
+{
     private LocalDateTime data;
     private String diaSemana;
     private int ano;
@@ -27,7 +24,9 @@ public class Tarefa {
     Tarefa proximo;
     Tarefa anterior;
 
-    public Tarefa(LocalDateTime data, String descricao, String local, int lembrete, int periocidade) {
+    public Tarefa(LocalDateTime data, String descricao, String local, 
+            int lembrete, int periocidade) 
+    {
         this.data = data;
         this.diaSemana = data.getDayOfWeek().toString();
         this.hora = data.getHour();
@@ -131,8 +130,11 @@ public class Tarefa {
 
     
     @Override
-    public String toString() {
-        return "Tarefa{" + "data=" + data + ", diaSemana=" + diaSemana + ", hora=" + hora + ", descricao=" + descricao + ", local=" + local + ", lembrete=" + lembrete + ", periocidade=" + periocidade + '}';
+    public String toString() 
+    {
+        return "Tarefa{" + "data=" + data + ", diaSemana=" + diaSemana + 
+                ", hora=" + hora + ", descricao=" + descricao + ", local=" + local
+                + ", lembrete=" + lembrete + ", periocidade=" + periocidade + '}';
     }
     
     

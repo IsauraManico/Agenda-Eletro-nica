@@ -1,24 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package projecto;
 
 import java.util.ArrayList;
 
 /**
  *
- * @author kenny
+ * @author Eufránio,Denízia,Isaura
  */
-public class HashMap {
+public class HashMap 
+{
     private final HashMapAno anos[];
     private final ArrayList<Integer> arrayChaves;
     private final int TAMANHO = 20;
     private int quantidade;
     
     
-    public HashMap(){
+    public HashMap()
+    {
         this.anos = new HashMapAno[this.TAMANHO];
         this.quantidade = 0;
         this.arrayChaves = new ArrayList<>();
@@ -31,7 +29,8 @@ public class HashMap {
         }
     }
     
-    private int funcaoHash(final int numCamisola){
+    private int funcaoHash(final int numCamisola)
+    {
         return ((numCamisola * 49) / 2) % this.TAMANHO;
     }
     
@@ -42,11 +41,13 @@ public class HashMap {
         return this.quantidade == this.TAMANHO;
     }
     
-    public void inserirTarefa(Tarefa novaTarefa){
+    public void inserirTarefa(Tarefa novaTarefa)
+    {
         this.inserirAno(novaTarefa.getAno(), novaTarefa);
     }
     
-    public void inserirAno(int chaveAno, Tarefa novaTarefa){
+    public void inserirAno(int chaveAno, Tarefa novaTarefa)
+    {
         if(!this.estaCheia()){
             int index = this.funcaoHash(chaveAno);
             int indexAUX = index;
@@ -91,7 +92,8 @@ public class HashMap {
             }
             else{
                 while(this.anos[index] != null ||
-                     (this.anos[index] != null ? this.anos[index].getChaves().isEmpty() : false)){
+                     (this.anos[index] != null ? this.anos[index].getChaves().
+                             isEmpty() : false)){
                      if(this.anos[index].getIdAno() == chaveAno){
                         return this.anos[index];
                      }
