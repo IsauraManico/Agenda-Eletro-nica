@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -20,6 +22,7 @@ public class CriacaoMenu
     
     public static void menu() {
         carregarTarefas();
+        verificarLembretes();
         
         int operador;
         
@@ -553,6 +556,42 @@ public class CriacaoMenu
                 ficheiro.delete();
             }
         } catch (Exception e) {
+        }
+    }
+    
+    private static void verificarLembretes() {
+        ArrayList <Integer> anosRegistrados = geral.getChaves();
+        LocalDate dataActual = LocalDate.now();
+        StringBuilder lembretes = new StringBuilder("");
+        
+        for(final int ano : anosRegistrados) {
+            ArrayList <Integer> mesesRegistrados = geral.buscarAno(ano).getChaves();
+            
+            for (final int mes : mesesRegistrados) {
+                ArrayList<Integer> diasRegistrados = geral.buscarAno(ano).buscar(mes).getChaves();
+                
+                for (final int dia : diasRegistrados) {
+                    Tarefa tarefaAux = geral.buscarAno(ano).buscar(mes).buscar(dia).primeiro;
+                    
+                    while (tarefaAux != null) {
+                        LocalDate dataDaTarefa = LocalDate.of(tarefaAux.getAno(),
+                                tarefaAux.getMes(), 
+                                tarefaAux.getDia()).minus(Period.ofDays(tarefaAux.getLembrete()));
+                        
+                        if (dataDaTarefa.getYear() == dataActual.getYear() && 
+                            dataDaTarefa.getMonthValue() == dataActual.getMonthValue() &&
+                            dataDaTarefa.getDayOfMonth() == dataActual.getDayOfMonth()) {
+                            System.out.println("txe");
+                            lembretes.append(tarefaAux.toString()).append("\n"); 
+                        }
+                        tarefaAux = tarefaAux.proximo;
+                    }
+                }
+            }
+        }
+        if (!lembretes.toString().equals("")) {
+            System.out.println("Lembretes");
+            System.out.println(lembretes.toString());
         }
     }
 }
