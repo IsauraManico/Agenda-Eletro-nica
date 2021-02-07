@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package projecto;
 
 import java.util.Date;
@@ -12,7 +8,8 @@ import java.time.LocalDateTime;
  *
  * @author kenny
  */
-public class Tarefa {
+public class Tarefa 
+{
     private LocalDateTime data;
     private String diaSemana;
     private int ano;
@@ -20,6 +17,7 @@ public class Tarefa {
     private int dia;
     private int hora;
     private int minuto;
+    private int segundos;
     private String descricao;
     private String local;
     private int lembrete;
@@ -27,11 +25,14 @@ public class Tarefa {
     Tarefa proximo;
     Tarefa anterior;
 
-    public Tarefa(LocalDateTime data, String descricao, String local, int lembrete, int periocidade) {
+    public Tarefa(LocalDateTime data, String descricao, String local, 
+            int lembrete, int periocidade) 
+    {
         this.data = data;
         this.diaSemana = data.getDayOfWeek().toString();
         this.hora = data.getHour();
         this.minuto = data.getMinute();
+        this.segundos = data.getSecond();
         this.descricao = descricao;
         this.local = local;
         this.lembrete = lembrete;
@@ -129,10 +130,48 @@ public class Tarefa {
         this.minuto = minuto;
     }
 
+    public int getSegundos() {
+        return segundos == 0 ? this.data.getSecond(): this.segundos;
+    }
+
+    public void setSegundos(int segundos) {
+        this.segundos = segundos;
+    }
+    
+
     
     @Override
-    public String toString() {
-        return "Tarefa{" + "data=" + data + ", diaSemana=" + diaSemana + ", hora=" + hora + ", descricao=" + descricao + ", local=" + local + ", lembrete=" + lembrete + ", periocidade=" + periocidade + '}';
+    public String toString() 
+    {
+        return "\n--------------------------------------------------------------\n"
+                + "Data: " + data + ", " +  diaSemana + "\n"
+                + "\nDescrição: " + descricao + "\n\n\n"
+                + "Local: " + local + "\n"
+                + "Hora: " + hora + ":" + minuto + "\n\n"
+                + "Lembrete: " + lembrete + "\n"
+                + "Periocidade: " + periocidade + "\n" 
+                + "-------------------------------------------------------------";
+    }
+
+    public String simpleString() {
+        return this.getAno() + "\n" 
+             + this.getMes() + "\n" 
+             + this.getDia() + "\n" 
+             + this.getHora() + "\n"
+             + this.getMinuto() + "\n"
+             + this.getSegundos() + "\n"
+             + this.descricao + "\n"
+             + this.local + "\n"
+             + this.lembrete + "\n"
+             + this.periocidade;
+    }
+    String getIdentifcacao() {
+        return this.data.getYear() + "-" 
+                + this.data.getMonthValue() + "-" 
+                + this.data.getDayOfMonth() + "-"
+                + this.data.getHour() + "-" 
+                + this.data.getMinute() + "-" 
+                + this.data.getSecond();
     }
     
     
