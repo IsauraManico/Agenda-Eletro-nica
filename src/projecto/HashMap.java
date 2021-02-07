@@ -1,7 +1,9 @@
 
 package projecto;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import javafx.util.converter.LocalDateTimeStringConverter;
 
 /**
  *
@@ -43,7 +45,31 @@ public class HashMap
     
     public void inserirTarefa(Tarefa novaTarefa)
     {
-        this.inserirAno(novaTarefa.getAno(), novaTarefa);
+        if (novaTarefa.getPeriocidade() == 0) {
+            this.inserirAno(novaTarefa.getAno(), novaTarefa);
+        } else {
+            Tarefa tarefaAux = novaTarefa;
+            
+            for (int mes = novaTarefa.getMes(); mes <= 12; mes++) {
+                try {
+                    tarefaAux.setMes(mes);
+                    LocalDateTime data = LocalDateTime.of(tarefaAux.getAno(),
+                            mes,
+                            tarefaAux.getDia(),
+                            tarefaAux.getHora(),
+                            tarefaAux.getMinuto(),
+                            tarefaAux.getSegundos());
+                    tarefaAux = new Tarefa(data, 
+                            novaTarefa.getDescricao(), 
+                            novaTarefa.getLocal(), 
+                            novaTarefa.getLembrete(), 
+                            novaTarefa.getPeriocidade());
+                    
+                    this.inserirAno(novaTarefa.getAno(), tarefaAux);
+                } catch (Exception e) {
+                }
+            }
+        }
     }
     
     public void inserirAno(int chaveAno, Tarefa novaTarefa)

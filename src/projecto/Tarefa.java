@@ -90,7 +90,7 @@ public class Tarefa
         this.lembrete = lembrete;
     }
 
-    public int isPeriocidade() {
+    public int getPeriocidade() {
         return periocidade;
     }
 

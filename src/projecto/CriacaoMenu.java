@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -221,16 +220,16 @@ public class CriacaoMenu
 
             
             tarefaSerEditada.setAno((ano.equals(".") ? tarefaSerEditada.getAno() : Integer.parseInt(ano)));
-            tarefaSerEditada.setMes((mes.equals(".") ? tarefaSerEditada.getMes(): Integer.parseInt(mes)));
-            tarefaSerEditada.setDia((dia.equals(".") ? tarefaSerEditada.getDia(): Integer.parseInt(dia)));
-            tarefaSerEditada.setHora((hora.equals(".") ? tarefaSerEditada.getHora(): Integer.parseInt(hora)));
-            tarefaSerEditada.setMinuto((minutos.equals(".") ? tarefaSerEditada.getMinuto(): Integer.parseInt(minutos)));
+            tarefaSerEditada.setMes((mes.equals(".") ? tarefaSerEditada.getMes() : Integer.parseInt(mes)));
+            tarefaSerEditada.setDia((dia.equals(".") ? tarefaSerEditada.getDia() : Integer.parseInt(dia)));
+            tarefaSerEditada.setHora((hora.equals(".") ? tarefaSerEditada.getHora() : Integer.parseInt(hora)));
+            tarefaSerEditada.setMinuto((minutos.equals(".") ? tarefaSerEditada.getMinuto() : Integer.parseInt(minutos)));
             tarefaSerEditada.setData(LocalDateTime.of(tarefaSerEditada.getAno(), tarefaSerEditada.getMes(),
                     tarefaSerEditada.getDia(), tarefaSerEditada.getHora(), tarefaSerEditada.getMinuto()));
-            tarefaSerEditada.setDescricao((descString.equals(".") ? tarefaSerEditada.getDescricao(): descString));
-            tarefaSerEditada.setLocal((local.equals(".") ? tarefaSerEditada.getLocal(): local));
-            tarefaSerEditada.setLembrete((lembrete.equals(".") ? tarefaSerEditada.getLembrete(): Integer.parseInt(lembrete)));
-            tarefaSerEditada.setPeriocidade((periocidade.equals(".") ? tarefaSerEditada.isPeriocidade(): Integer.parseInt(periocidade)));                  
+            tarefaSerEditada.setDescricao((descString.equals(".") ? tarefaSerEditada.getDescricao() : descString));
+            tarefaSerEditada.setLocal((local.equals(".") ? tarefaSerEditada.getLocal() : local));
+            tarefaSerEditada.setLembrete((lembrete.equals(".") ? tarefaSerEditada.getLembrete() : Integer.parseInt(lembrete)));
+            tarefaSerEditada.setPeriocidade((periocidade.equals(".") ? tarefaSerEditada.getPeriocidade() : Integer.parseInt(periocidade)));                  
             
             
             geral.inserirTarefa(tarefaSerEditada);
@@ -581,8 +580,7 @@ public class CriacaoMenu
                         if (dataDaTarefa.getYear() == dataActual.getYear() && 
                             dataDaTarefa.getMonthValue() == dataActual.getMonthValue() &&
                             dataDaTarefa.getDayOfMonth() == dataActual.getDayOfMonth()) {
-                            System.out.println("txe");
-                            lembretes.append(tarefaAux.toString()).append("\n"); 
+                            lembretes.append("Faltam ").append(tarefaAux.getLembrete()).append(" dia(s)").append(tarefaAux.toString()).append("\n"); 
                         }
                         tarefaAux = tarefaAux.proximo;
                     }
@@ -594,5 +592,6 @@ public class CriacaoMenu
             System.out.println(lembretes.toString());
         }
     }
+    
 }
     
