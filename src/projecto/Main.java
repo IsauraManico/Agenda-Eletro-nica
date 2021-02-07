@@ -13,37 +13,36 @@ public class Main {
     static String descString, local;
         
     public static void main(String[] args) {
-        //LocalDateTime myObj = LocalDateTime.now(); 
         menu();
     }
     
     public static void menu(){
         int op;
-        
         boolean flag = true;
         
         
         do{
             System.out.println("\n");
+            System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------");
             System.out.println("\t\t\t\t\t\tSeja Bem Vindo ao Programa O Que Deseja Fazer?");
             System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------");
-            System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------");
-            System.out.println("1- Inserir Tarefa" + 
-                              "\n2-Remover Tarefa" + 
-                              "\n3- Editar Uma Tarefa" + 
-                              "\n4- Verificar Existencia de uma Tarefa" +
-                              "\n5- Ver Tarefas De Uma Data" + 
-                              "\n6- Verificar Tarefas Em Um Horário" +
-                              "\n7- Verificar se a Agenda está vazia" +
-                              "\n8- Verificar Dias Livres Em Um Mês" +
-                              "\n9- Verificar Meses Sem Atividade" +
-                              "\n10- Ver Mês mais Atarefado" +
-                              "\n11- Ver Mês menos Atarefado" +
-                              "\n12- Ver Todas AS Tarefas" +
-                              "\n13- Fechar o Programa");
+            System.out.println("\n1  - Inserir Tarefa" + 
+                              "\n2  - Remover Tarefa" + 
+                              "\n3  - Editar Uma Tarefa" + 
+                              "\n4  - Verificar Existencia de uma Tarefa" +
+                              "\n5  - Ver Tarefas De Uma Data" + 
+                              "\n6  - Verificar Tarefas Em Um Horário" +
+                              "\n7  - Verificar se a Agenda está vazia" +
+                              "\n8  - Verificar Dias Livres Em Um Mês" +
+                              "\n9  - Verificar Meses Sem Atividade" +
+                              "\n10 - Ver Mês mais Atarefado" +
+                              "\n11 - Ver Mês menos Atarefado" +
+                              "\n12 - Ver Todas AS Tarefas" +
+                              "\n13 - Fechar o Programa");
 
-            System.out.println("\n");
+            System.out.print(": ");
             op = input.nextInt();
+            
             switch(op){
                 case 1:
                     inserirTarefa();
@@ -94,47 +93,53 @@ public class Main {
     }
 
     private static void inserirTarefa() {
-        System.out.println("\n");
-        System.out.println("Inserção da Data:");
-        System.out.println("Ano: ");
-        ano = input.nextInt();
-        System.out.println("Mês: ");
-        mes = input.nextInt();
-        System.out.println("Dia: ");
-        dia = input.nextInt();      
+        System.out.println("\n*****************************************");
+        System.out.println("\tInserção de uma Nova Tarefa");
+        System.out.println("*****************************************");
         
-        System.out.println("Hora: ");
-        hora = input.nextInt();
-        System.out.println("Minutos: ");
-        minutos = input.nextInt();
-        
-        System.out.println("Descrição: ");
+        System.out.print("Descrição: ");
         descString = input.next();
         
-        System.out.println("Local: ");
+        System.out.print("\nAno: ");
+        ano = input.nextInt();
+        System.out.print("\nMês: ");
+        mes = input.nextInt();
+        System.out.print("\nDia: ");
+        dia = input.nextInt();      
+        
+        System.out.print("\nHora: ");
+        hora = input.nextInt();
+        System.out.print("\nMinutos: ");
+        minutos = input.nextInt();
+        
+        System.out.print("\nLocal: ");
         local = input.next();
         
-        System.out.println("Lembrete: ");
+        System.out.print("\nLembrete: ");
         lembrete = input.nextInt();
         
-        System.out.println("Periocidade: ");
+        System.out.print("\nPeriocidade: ");
         periocidade = input.nextInt();
         
         Tarefa novaTarefa = new Tarefa(LocalDateTime.of(ano, mes, dia, hora, minutos, LocalDateTime.now().getSecond()),
                 descString, local, lembrete, periocidade);
         
-        
         geral.inserirTarefa(novaTarefa);
+        System.out.println("*****************************************");
+        System.out.println("*****************************************");
     }
 
     private static void removerTarefa() {
         System.out.println("\n");
+        System.out.println("\n*****************************************");
+        System.out.println("\tRemover uma Tarefa");
+        System.out.println("*****************************************");
         System.out.println("Inserção da Data:");
-        System.out.println("Ano: ");
+        System.out.print("Ano: ");
         ano = input.nextInt();
-        System.out.println("Mês: ");
+        System.out.print("\nMês: ");
         mes = input.nextInt();
-        System.out.println("Dia: ");
+        System.out.print("\nDia: ");
         dia = input.nextInt();
         
         
@@ -143,8 +148,7 @@ public class Main {
             
             System.out.println(geral.buscarAno(ano).buscar(mes).buscar(dia).toString());
             System.out.println("");
-            System.out.println("Qual Tarefa Pretendes Remover");
-            System.out.println("");
+            System.out.print("Qual Tarefa Pretendes Remover?\n: ");
             int op = input.nextInt();
             System.out.println("");
             
@@ -158,12 +162,15 @@ public class Main {
 
     private static void editarTarefa() {
         System.out.println("\n");
-        System.out.println("Editar Uma Tarefa:");
-        System.out.println("Ano: ");
+        System.out.println("\n*****************************************");
+        System.out.println("\tEditar Tarefa");
+        System.out.println("*****************************************");
+        System.out.println("Inserção data:");
+        System.out.print("\nAno: ");
         Main.ano = input.nextInt();
-        System.out.println("Mês: ");
+        System.out.print("\nMês: ");
         Main.mes = input.nextInt();
-        System.out.println("Dia: ");
+        System.out.print("\nDia: ");
         Main.dia = input.nextInt();
         
         
@@ -173,29 +180,29 @@ public class Main {
             
             System.out.println(geral.buscarAno(Main.ano).buscar(Main.mes).buscar(Main.dia).toString());
             System.out.println("");
-            System.out.println("Qual Tarefa Pretendes Editar");
+            System.out.print("Qual Tarefa Pretendes Editar?(Para não alterar digite .)\n: ");
             int op = input.nextInt();
             System.out.println("");
             
             Tarefa tarefaSerEditada = geral.buscarAno(Main.ano).buscar(Main.mes).buscar(Main.dia).removerMeio(op - 1);
           
-            System.out.println("Ano: ");
+            System.out.print("\nDescrição: ");
+            descString = input.next();
+            System.out.print("Ano: ");
             ano = input.next();
-            System.out.println("Mês: ");
+            System.out.print("\nMês: ");
             mes = input.next();
-            System.out.println("Dia: ");
+            System.out.print("\nDia: ");
             dia = input.next();   
-            System.out.println("Hora: ");
+            System.out.print("\nHora: ");
             hora = input.next();
-            System.out.println("Minutos: ");
-            minutos = input.next();
-            System.out.println("Descrição: ");
-            descString = input.next();    
-            System.out.println("Local: ");
+            System.out.print("\nMinutos: ");
+            minutos = input.next(); 
+            System.out.print("\nLocal: ");
             local = input.next();        
-            System.out.println("Lembrete: ");
+            System.out.print("\nLembrete: ");
             lembrete = input.next();        
-            System.out.println("Periocidade: ");
+            System.out.print("\nPeriocidade: ");
             periocidade = input.next();
 
             
@@ -213,14 +220,19 @@ public class Main {
             
             
             geral.inserirTarefa(tarefaSerEditada);
+            System.out.println("Tarefa alterada!");
         } catch (Exception e) {
             System.out.println("Não há tarefas registradas nessa Data");
         }
     }
 
     private static void verificarExistenciaTarefa() {
+        System.out.println("\n*****************************************");
+        System.out.println("\tVerificar Existência Tarefa");
+        System.out.println("*****************************************");
+        
         ArrayList <Integer> anosRegistrados = geral.getChaves();
-        System.out.println("Digite a descrição para procurar: ");
+        System.out.print    ("Digite uma descrição para procurar: ");
         String descString = input.next();
         
         for(final int ano : anosRegistrados)
